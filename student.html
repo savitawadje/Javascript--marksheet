@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <style>
+            /* body{
+                background-color: rgb(187, 217, 243); 
+            } */
+             #myModal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Sit on top */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color:darkslategrey;
+            margin-top: 100px;
+            padding: 20px;
+            color: white;
+        }
+        .jumbotron {
+            margin-top: 200px;
+            padding: 20px;
+            height: 200px;
+        }
+             .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        </style>
+    </head>
+
+<body>
+    <br>
+    <h2 class="text-center">  STUDENT MARKSHEET </h2>
+    <h6 class="text-center">       <button  type="button" onclick="document.getElementById('myModal').style.display='block'"> Check Your Result </button></h6>
+    <br> <br>
+    
+
+    <div  id="myModal"  >
+             
+            <div class="container row">
+               <div class="col-md-4"> 
+                
+                
+                <form id="form" class="modal-content">
+                    <br>
+                    <p> Fill  your marks here... <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span> </p> <br>
+                    <label> Maths</label>
+                    <input type="text" id="maths" class="form-control">
+                    <br>
+                    <label> Science</label>
+                    <input type="text" id="sci" class="form-control">
+                    <br>
+                    <label> Physics </label>
+                    <input type="text" id="phy" class="form-control">
+                    <br>
+                    <label> chemistry</label>
+                    <input type="text" id="chem" class="form-control">
+                    <br> <br>
+                    <input type="button" onclick="fun()" value="show percentage">
+                </form>
+               </div> 
+               <div class="col-md-2"> </div>
+                <div id="result" style="display: none;" class="jumbotron col-md-6 text-center">
+                    <span class="close" onclick="document.getElementById('result').style.display='none'">
+                        &times;</span>
+                    <p id="perc"> </p>
+                    </br>
+                    <p id="remark"> </p>
+                
+                 </div>
+            </div>
+            <br> 
+            <br>
+                
+            
+
+        </div>
+        
+        
+    </div>
+
+
+
+    <script>
+
+        function fun() {
+            var maths = document.getElementById("maths").value;
+            var sci = document.getElementById("sci").value;
+            var phy = document.getElementById("phy").value;
+            var chem = document.getElementById("chem").value;
+            var grades = " ";
+            var res = parseFloat(maths) + parseFloat(sci) + parseFloat(phy) + parseFloat(chem);
+
+
+            var perc = (parseFloat(res) / 600) * 100;
+            document.getElementById("perc").innerHTML = " Your percentage is " + perc;
+
+            if (perc > 35) {
+                grades = "pass";
+                document.getElementById("remark").innerHTML = " You are pass with total marks " + res + " and percentage " + perc + "</br> " + " Congraulations!! You are pass"
+            }
+            else {
+                grades = "fail";
+                document.getElementById("remark").innerHTML = " You are fail with total marks " + res + " and percentage " + perc + "</br> " + " Sorry attempt again!!"
+            }
+
+            document.getElementById('form').reset();
+            document.getElementById('result').style.display = 'block'
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
